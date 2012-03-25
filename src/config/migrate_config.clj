@@ -19,7 +19,7 @@
 
 (defn- maybe-create-schema-table
   "Creates the schema table if it doesn't already exist."
-  []
+  [args]
   (exec-raw "CREATE TABLE IF NOT EXISTS schema_version (version INTEGER NOT NULL, created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now())"))
 
 (defn current-db-version []
@@ -30,6 +30,12 @@
   (insert :schema_version (values {:version version})))
 
 (defn migrate-config []
-  { :directory "/src/migrations/"
+  { :directory "/migrations/"
+   :ns-content "\n (:use
+   [korma.db]
+   [korma.core]
+   )"
+   :namespace-prefix "migrations"
+   :init maybe-create-schema-table
    :current-version current-db-version
    :update-version update-db-version })
