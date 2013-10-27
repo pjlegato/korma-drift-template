@@ -3,9 +3,11 @@
   :url "http://github.com/pjlegato"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :dependencies [
-                 [korma "0.3.0-beta5"]
-                 [postgresql "9.1-901.jdbc4"]
-                 [drift "1.4.3"]
-
-                 [org.clojure/clojure "1.3.0"]])
+  :dependencies [[drift "1.5.2"]
+                 [korma "0.3.0-RC5"]
+                 [org.clojure/clojure "1.5.1"]
+                 [org.postgresql/postgresql "9.2-1002-jdbc4"]]
+  
+  ;; with this plugin, you can run migrations using "lein migrate" and 
+  ;; create new migration files with "lein create-migration"
+  :plugins [[drift "1.5.2"]])
