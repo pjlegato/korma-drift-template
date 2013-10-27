@@ -9,11 +9,11 @@
   (:use [drift.builder :only [incremental-migration-number-generator]]
         [korma core db]))
 
-(defdb db (postgres {:db "elibrarian"
-                     :host "127.0.0.1"
-                     :port 5432
-                     :user "elibrarian"
-                     :password "secret"}))
+(defdb db (postgres {:db *db-name*
+                     :host *db-host*
+                     :port *db-port*
+                     :user *db-user*
+                     :password *db-password*}))
 
 (defn- maybe-create-schema-table
   "Creates the schema table if it doesn't already exist."
